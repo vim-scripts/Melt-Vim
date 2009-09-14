@@ -1,0 +1,43 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2787
+
+Plugin for Melt (http://melt.forge.ocamlcore.org/) files: 
+- syntax colouring (with handling of spelling) 
+- filetype detection 
+- filetype plugin 
+- compiler plugin 
+
+Features: 
+* automatic detection of .mlt files 
+* syntax coloration 
+* compiler error handling (i.e. go to the location of the error indicated by Melt - warning: approximative) 
+* handling of spelling, english is the default, see :h spell for more details 
+* and the following commands: 
+
++ normal mode: 
+ - gf on a module name will open the corresponding file 
+
++ visual mode (xxx denotes the selected text, xxx -> ... means "xxx is rewritten as ..."): 
+ - <LocalLeader>": xxx -> "xxx" (i.e. inserts quotes around xxx) 
+ - <LocalLeader>(: xxx -> (xxx) 
+ - <LocalLeader>{: xxx -> {xxx} 
+ - <LocalLeader>[: xxx -> [xxx] 
+ - <LocalLeader>cc: xxx -> (*xxx*) 
+ - <LocalLeader>e: xxx -> {emph "xxx"} 
+ - <LocalLeader><LocalLeader>: ask for a string s (typically a caml function), then xxx -> {s "xxx"} 
+Note: <LocalLeader> is generally bound to ',' 
+
++ if the matchit plugin (http://www.vim.org/scripts/script.php?script_id=39) is installed then '%' will switch between struct/end, let/in, match/with, ... 
+
++ if the Nerd commenter plugin (http://www.vim.org/scripts/script.php?script_id=1218) is installed then its usual commands handle melt comments 
+
++ if you set the variable g:MeltCloseDelimiters then: 
+ - typing " will write "" and put the cursor between the quotes 
+ - typing ( will write () and put the cursor between the parentheses 
+ - typing { will write {} and put the cursor between the braces 
+ - typing [ will write [] and put the cursor between the brackets 
+
++ main rule to detect the compiler for :make (see compiler/melt.vim for details): 
+1. if there is a Makefile then :make launches make 
+2. if there is a myocamlbuild.ml then :make launches ocamlbuild 
+3. otherwise launch melt 
+
